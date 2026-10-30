@@ -27,6 +27,12 @@ design/HANDOFF.md    ← design handoff spec (tokens, sections, interactions)
 design/landing-prototype.dc.html   ← original prototype, reference only
 ```
 
+## Preview
+
+Every push to `main` deploys `public/` to GitHub Pages: https://gr-vive.github.io/iffecta-site/
+(`.github/workflows/pages.yml` prefixes root-relative URLs with `/iffecta-site/` and drops `.htaccess`).
+Production will live on Beget, see docs/DEPLOY.md.
+
 ## Editing
 
 - Landing texts and links: edit `public/index.html` directly.
