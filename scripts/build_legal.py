@@ -200,7 +200,7 @@ FOOTER = """<footer class="footer">
     <div class="footer__col">
       <div class="label">Где купить</div>
       <a href="https://www.wildberries.ru/brands/312291079-iffecta" target="_blank" rel="noopener">Wildberries</a>
-      <a href="/#buy">Все пенки</a>
+      <a href="/#lineup">Все пенки</a>
     </div>
     <div class="footer__col">
       <div class="label">Документы</div>
