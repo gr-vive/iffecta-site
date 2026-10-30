@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+body{margin:0;background:#F7C7DD;color:#151515;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#151515;text-decoration:none}a:hover{color:#F52A82}
+*{box-sizing:border-box}
+[data-card-buy]{opacity:0;transition:opacity .25s ease}
+[data-card]:hover [data-card-buy],[data-card]:focus-within [data-card-buy]{opacity:1}
+[data-card-img]{transition:transform .4s ease}
+[data-card]:hover [data-card-img]{transform:scale(1.04)}
+@media (hover:none){[data-card-buy]{opacity:1}}
+@media (max-width:640px){
+  [data-m-hide]{display:none!important}
+  [data-m-nav]{padding:4px 2px 14px!important}
+  [data-m-hero]{height:auto!important;min-height:0!important;aspect-ratio:3/4}
+  [data-m-stack]{flex-direction:column!important;align-items:flex-start!important;margin-top:auto}
+  [data-m-tall]{aspect-ratio:3/4!important}
+  [data-m-about-text]{display:flex!important}
+  [data-m-about-text-desktop]{display:none!important}
+  [data-m-buyline]{grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))!important}
+  [data-m-ugc]{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  [data-m-cta],[data-m-cta-wrap]{width:100%!important;justify-content:center!important}
+  [data-m-buy]{position:relative!important;padding:12px!important}
+  [data-m-buy-card]{width:100%!important}
+  [data-m-buy-img]{position:relative!important;height:clamp(300px,90vw,440px)}
+  [data-m-buy-sec]{min-height:0!important}
+}
+</style>
+</helmet>
+<div data-screen-label="Landing" style="min-height:100vh;background:#F7C7DD;padding:clamp(12px,3vw,40px);font-family:Inter,system-ui,sans-serif;color:#151515">
+
+<!-- NAV -->
+<header data-m-nav style="max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px 4px 22px;flex-wrap:wrap">
+  <a href="#" style="display:flex;align-items:center"><img src="./iffecta/brand/logo-oneline-black.png" alt="IFFECTA" style="height:22px;width:auto;display:block"></a>
+  <nav data-m-hide style="display:flex;gap:clamp(14px,2.5vw,32px);font-size:14px;font-weight:500;flex-wrap:wrap">
+    <a href="#about">О пенке</a>
+    <a href="#actives">Состав</a>
+    <a href="#how">Применение</a>
+    <a href="#lineup">Линейка</a>
+  </nav>
+  <a href="#buy" style="background:#151515;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;font-weight:500" style-hover="background:#F52A82;color:#fff">Купить</a>
+</header>
+
+<div style="max-width:1280px;margin:0 auto;background:#fff;border-radius:20px;overflow:hidden">
+
+  <!-- HERO -->
+  <section data-screen-label="Hero" data-m-hero style="position:relative;height:clamp(520px,78vh,800px)">
+    <img src="./photos/web/1028.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block">
+    <video ref="{{ heroVideoRef }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s ease"></video>
+    <div style="position:absolute;inset:0;pointer-events:none;padding:clamp(16px,3vw,36px);display:flex;flex-direction:column;justify-content:space-between">
+      <div data-m-hide style="pointer-events:auto;align-self:flex-start;width:min(300px,100%);background:rgba(255,255,255,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.7);border-radius:14px;padding:18px 18px 20px;position:relative;box-shadow:0 10px 40px rgba(21,21,21,0.08)">
+        <div style="position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;background:#F52A82"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#F52A82;text-transform:uppercase;margin-bottom:8px">Эмоции first!</div>
+        <p style="margin:0;font-size:13px;line-height:1.45;max-width:230px">Цветная пена превращает обычное умывание в момент, который хочется попробовать, рассмотреть и снять.</p>
+      </div>
+      <div data-m-stack style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+        <h1 style="margin:0;font-size:clamp(44px,8.5vw,120px);line-height:0.92;letter-spacing:-0.04em;font-weight:800;color:#F52A82;text-wrap:balance">Умывайся<br>в цвете.</h1>
+        <div data-m-cta-wrap style="pointer-events:auto;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <a href="#buy" data-m-cta style="display:inline-flex;align-items:center;gap:10px;background:#F52A82;color:#fff;text-decoration:none;padding:16px 28px;border-radius:999px;font-size:15px;font-weight:700;letter-spacing:-0.01em;box-shadow:0 10px 30px rgba(245,42,130,0.3)" style-hover="background:#151515">Купить</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFEST -->
+  <section id="about" data-screen-label="About" style="padding:clamp(40px,6vw,88px) clamp(16px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,56px);align-items:end">
+    <div data-m-about-text style="display:none;flex-direction:column;gap:16px">
+      <p style="margin:0;font-size:clamp(15px,1.3vw,18px);line-height:1.5;max-width:460px;text-wrap:pretty"><strong style="color:#F52A82;font-weight:700">IFFECTA</strong> — это уход, который начинается с эмоции. Мы сделали пенку, с которой хочется умываться.</p>
+      <p style="margin:0;font-size:clamp(15px,1.3vw,18px);line-height:1.5;max-width:460px;text-wrap:pretty">Мы превращаем простое действие в удовольствие: цветная пена, живая реакция, настроение на весь день.</p>
+    </div>
+    <div style="position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden">
+      <img src="./photos/web/0835.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block">
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;padding-bottom:8px">
+      <div data-m-about-text-desktop style="display:flex;flex-direction:column;gap:20px">
+      <p style="margin:0;font-size:clamp(15px,1.3vw,18px);line-height:1.5;max-width:460px;text-wrap:pretty"><strong style="color:#F52A82;font-weight:700">IFFECTA</strong> — это уход, который начинается с эмоции. Мы сделали пенку, с которой хочется умываться.</p>
+      <p style="margin:0;font-size:clamp(15px,1.3vw,18px);line-height:1.5;max-width:460px;text-wrap:pretty">Мы превращаем простое действие в удовольствие: цветная пена, живая реакция, настроение на весь день.</p>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82;margin-bottom:6px">Розовая пенка</div>
+        <h2 style="margin:0;font-size:clamp(40px,6.5vw,96px);line-height:0.95;letter-spacing:-0.04em;font-weight:800;color:#F52A82;text-wrap:balance">Да, пена розовая.<br>Нет, это не фильтр.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS + PRODUCT HIGHLIGHT -->
+  <section data-screen-label="Benefits" style="padding:0 clamp(16px,4vw,56px) clamp(40px,6vw,88px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,56px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:28px;padding-top:12px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82">Яркое очищение</div>
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;font-size:clamp(17px,1.6vw,22px);line-height:1.35;font-weight:500">
+        <li style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:12px;height:12px;border-radius:50%;background:#F52A82;margin-top:9px"></span>очищает от излишков себума и загрязнений</li>
+        <li style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:12px;height:12px;border-radius:50%;background:#F52A82;margin-top:9px"></span>поддерживает защитный барьер кожи</li>
+        <li style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:12px;height:12px;border-radius:50%;background:#F52A82;margin-top:9px"></span>деликатно отшелушивает и освежает цвет лица</li>
+        <li style="display:flex;gap:14px;align-items:flex-start"><span style="flex:none;width:12px;height:12px;border-radius:50%;background:#F52A82;margin-top:9px"></span>сохраняет кожу нежной и мягкой</li>
+      </ul>
+      <a href="#buy" style="align-self:flex-start;border:1.5px solid #F52A82;color:#F52A82;padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500" style-hover="background:#F52A82;color:#fff">Хочу попробовать</a>
+    </div>
+    <div data-m-tall style="position:relative;aspect-ratio:1/1;border-radius:16px;overflow:hidden">
+      <img src="./photos/web/1084.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block">
+      <div style="position:absolute;bottom:clamp(12px,2vw,24px);right:clamp(12px,2vw,24px);pointer-events:none;width:min(260px,70%);background:rgba(255,255,255,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.7);border-radius:14px;padding:18px 18px 20px">
+        <div style="position:absolute;top:14px;right:14px;width:28px;height:28px;border-radius:50%;background:#F52A82"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#F52A82;text-transform:uppercase;margin-bottom:8px">Вкусный аромат</div>
+        <p style="margin:0;font-size:13px;line-height:1.45">Ощущение комфорта после умывания. Для ежедневного ухода.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACTIVES -->
+  <section id="actives" data-screen-label="Actives" style="padding:0 clamp(16px,4vw,56px) clamp(40px,6vw,88px);display:grid;gap:clamp(24px,3vw,40px)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:clamp(34px,4.5vw,64px);line-height:1;letter-spacing:-0.03em;font-weight:800;text-wrap:balance">Что внутри</h2>
+    </div>
+    <div style="background:#F7C7DD;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));align-items:stretch">
+      <div style="position:relative;min-height:clamp(320px,45vw,520px);overflow:hidden"><video ref="{{ lotusVideoRef }}" src="./uploads/generated_video.mp4" autoPlay="{{ true }}" muted="{{ true }}" loop="{{ true }}" playsInline="{{ true }}" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block"></video></div>
+      <div style="padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:18px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82">Главный ингредиент</div>
+        <h3 style="margin:0;font-size:clamp(32px,4vw,56px);line-height:0.98;letter-spacing:-0.03em;font-weight:800;color:#F52A82;text-wrap:balance">Экстракт розового лотоса</h3>
+        <p style="margin:0;font-size:clamp(16px,1.4vw,19px);line-height:1.45;max-width:420px;text-wrap:pretty">Богат антиоксидантами, успокаивает и защищает кожу.</p>
+      </div>
+    </div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-top:8px">Также в составе</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px">
+      <div style="background:#F7C7DD;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-height:260px">
+        <div style="position:relative;height:120px;border-radius:12px;overflow:hidden;background:#fff"><image-slot id="act-centella" shape="rect" src="./uploads/pasted-1792620365162-0.jpg" placeholder="Центелла азиатская"></image-slot></div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#F52A82">Экзосомы центеллы азиатской</div>
+        <p style="margin:0;font-size:14px;line-height:1.45">сохраняет кожу увлажнённой, уменьшает видимость пор</p>
+      </div>
+      <div style="background:#F7C7DD;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-height:260px">
+        <div style="position:relative;height:120px;border-radius:12px;overflow:hidden;background:#fff"><image-slot id="act-niacin" shape="rect" src="./uploads/image (1).jpg" placeholder="Текстура / капля"></image-slot></div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#F52A82">Ниацинамид</div>
+        <p style="margin:0;font-size:14px;line-height:1.45">поддерживает защитный барьер кожи, устраняет чувство стянутости</p>
+      </div>
+      <div style="background:#F7C7DD;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;min-height:260px">
+        <div style="position:relative;height:120px;border-radius:12px;overflow:hidden;background:#fff"><image-slot id="act-enzymes" shape="rect" src="./uploads/image (2).jpg" placeholder="Фрукты / черимойя"></image-slot></div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#F52A82">Фруктовые энзимы</div>
+        <p style="margin:0;font-size:14px;line-height:1.45">бережно отшелушивают ороговевшие клетки эпидермиса</p>
+      </div>
+    </div>
+    <details style="background:#F7C7DD;border-radius:16px;padding:18px 22px">
+      <summary style="cursor:pointer;font-size:14px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;list-style:none;display:flex;justify-content:space-between;align-items:center"><span>Полный состав</span><span style="color:#F52A82">+</span></summary>
+      <p style="margin:14px 0 0;font-size:13px;line-height:1.55;color:#151515">Aqua, Sodium Cocoyl Glutamate, Disodium Cocoyl Glutamate, Glycerin, Cocamidopropyl Betaine, Annona Cherimola Fruit Extract, Hydroxyethyl Urea, Niacinamide, Maltooligosyl Glucoside, Hydrogenated Starch Hydrolysate, Almond Oil Glycereth-8 Esters, Phenoxyethanol, Ethylhexylglycerin, Parfum, 1,2-Hexanediol, Centella Asiatica Leaf Vesicles, Nelumbo Nucifera Extract, Potassium Sorbate, Citric Acid, Trisodium Ethylenediamine Disuccinate, CI 45100.</p>
+    </details>
+  </section>
+
+  <!-- HOW TO -->
+  <section id="how" data-screen-label="How to" style="padding:clamp(40px,6vw,88px) clamp(16px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,56px);align-items:center">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82;margin-bottom:10px">Применение</div>
+        <h2 style="margin:0;font-size:clamp(34px,4.5vw,64px);line-height:1;letter-spacing:-0.03em;font-weight:800;text-wrap:balance">Умывание – это весело</h2>
+      </div>
+      <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0">
+        <li style="display:flex;gap:18px;align-items:baseline;padding:18px 0;border-top:1px solid #F7C7DD"><span style="flex:none;font-size:13px;font-weight:700;color:#F52A82;width:28px">01</span><span style="font-size:clamp(16px,1.4vw,19px);line-height:1.4">Выдави пенку на ладонь</span></li>
+        <li style="display:flex;gap:18px;align-items:baseline;padding:18px 0;border-top:1px solid #F7C7DD"><span style="flex:none;font-size:13px;font-weight:700;color:#F52A82;width:28px">02</span><span style="font-size:clamp(16px,1.4vw,19px);line-height:1.4">Распредели по влажной коже лица массажными движениями</span></li>
+        <li style="display:flex;gap:18px;align-items:baseline;padding:18px 0;border-top:1px solid #F7C7DD;border-bottom:1px solid #F7C7DD"><span style="flex:none;font-size:13px;font-weight:700;color:#F52A82;width:28px">03</span><span style="font-size:clamp(16px,1.4vw,19px);line-height:1.4">Смой тёплой водой</span></li>
+      </ol>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <span style="border:1px solid #151515;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:500">Не тестируется на животных</span>
+        <span style="border:1px solid #151515;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:500">Сертифицированная косметика</span>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden">
+      <image-slot id="how-palm" shape="rect" src="./photos/web/0929.jpg" placeholder="Фото: ладонь к камере с шапочкой розовой пены, на щеке пена"></image-slot>
+    </div>
+  </section>
+
+  <!-- UGC -->
+  <sc-if value="{{ showUgc }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="UGC" style="padding:0 clamp(16px,4vw,56px) clamp(40px,6vw,88px);display:grid;gap:20px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:clamp(34px,4.5vw,64px);line-height:1;letter-spacing:-0.03em;font-weight:800">Яркие эмоции</h2>
+      <a href="#" style="font-size:14px;font-weight:500;border-bottom:1.5px solid #151515">@iffecta</a>
+    </div>
+    <div data-m-ugc style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
+      <div style="position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden">
+        <image-slot id="ugc-1" shape="rect" src="./photos/web/0991.jpg" placeholder="UGC"></image-slot>
+      </div>
+      <div style="position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden">
+        <image-slot id="ugc-2" shape="rect" src="./photos/web/0787.jpg" placeholder="UGC"></image-slot>
+      </div>
+      <div style="position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden">
+        <image-slot id="ugc-3" shape="rect" src="./photos/web/1065.jpg" placeholder="UGC"></image-slot>
+      </div>
+      <div style="position:relative;aspect-ratio:3/4;border-radius:14px;overflow:hidden">
+        <image-slot id="ugc-4" shape="rect" src="./photos/web/0883.jpg" placeholder="UGC"></image-slot>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- LINEUP -->
+  <sc-if value="{{ showLineup }}" hint-placeholder-val="{{ true }}">
+  <section id="lineup" data-screen-label="Lineup" style="padding:0 clamp(16px,4vw,56px) clamp(40px,6vw,88px);display:grid;gap:20px">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+      <h2 style="margin:0;font-size:clamp(34px,4.5vw,64px);line-height:1;letter-spacing:-0.03em;font-weight:800;text-wrap:balance">Выбери своё настроение</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px">
+      <div data-card style="border-radius:16px;overflow:hidden;background:#C9EAF7;display:flex;flex-direction:column;position:relative">
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#EDE9E4">
+          <img data-card-img src="./uploads/image (3).jpg" alt="Розовая пенка IFF-01" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <a href="#buy" data-card-buy style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(21,21,21,0.18)"><span style="background:#F52A82;color:#fff;padding:14px 28px;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 10px 30px rgba(245,42,130,0.35)">Купить</span></a>
+        </div>
+        <div style="padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase"><span>Розовая</span><span>170 мл</span></div>
+          <div style="font-size:clamp(18px,1.6vw,22px);font-weight:700;letter-spacing:-0.01em">Розовый лотос · экзосомы центеллы</div>
+        </div>
+      </div>
+      <div data-card style="border-radius:16px;overflow:hidden;background:#F7C7DD;display:flex;flex-direction:column;position:relative">
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#EDE9E4">
+          <img data-card-img src="./uploads/image (5).jpg" alt="Жёлтая пенка IFF-02" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <a href="#buy" data-card-buy style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(21,21,21,0.18)"><span style="background:#F52A82;color:#fff;padding:14px 28px;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 10px 30px rgba(245,42,130,0.35)">Купить</span></a>
+        </div>
+        <div style="padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase"><span>Жёлтая</span><span>170 мл</span></div>
+          <div style="font-size:clamp(18px,1.6vw,22px);font-weight:700;letter-spacing:-0.01em">Витамин С · экзосомы центеллы</div>
+        </div>
+      </div>
+      <div data-card style="border-radius:16px;overflow:hidden;background:#D7C9EF;display:flex;flex-direction:column;position:relative">
+        <div style="position:relative;aspect-ratio:4/5;overflow:hidden;background:#EDE9E4">
+          <img data-card-img src="./uploads/image (4).jpg" alt="Синяя пенка IFF-03" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block">
+        <a href="#buy" data-card-buy style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(21,21,21,0.18)"><span style="background:#F52A82;color:#fff;padding:14px 28px;border-radius:999px;font-size:15px;font-weight:700;box-shadow:0 10px 30px rgba(245,42,130,0.35)">Купить</span></a>
+        </div>
+        <div style="padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px">
+          <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase"><span>Синяя</span><span>170 мл</span></div>
+          <div style="font-size:clamp(18px,1.6vw,22px);font-weight:700;letter-spacing:-0.01em">Морские минералы · кокосовое молоко</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- BUY -->
+  <section id="buy" data-screen-label="Buy" data-m-buy-sec style="position:relative;min-height:clamp(420px,60vh,620px);background:#F7C7DD">
+    <div data-m-buy-img style="position:absolute;inset:0"><image-slot id="buy-bg" shape="rect" src="./photos/web/1144.jpg" placeholder="Фото: улыбающаяся девушка держит три пенки — жёлтую, розовую, синюю"></image-slot></div>
+    <div data-m-buy style="position:absolute;inset:0;pointer-events:none;padding:clamp(16px,3vw,36px);display:flex;align-items:flex-end;justify-content:flex-end">
+      <div data-m-buy-card style="pointer-events:auto;width:min(360px,100%);background:rgba(255,255,255,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,0.7);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:16px;position:relative">
+        <div style="position:absolute;top:18px;right:18px;width:28px;height:28px;border-radius:50%;background:#F52A82"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:#F52A82;text-transform:uppercase">Где купить</div>
+        <h2 style="margin:0;font-size:clamp(26px,2.6vw,36px);line-height:1.05;letter-spacing:-0.03em;font-weight:800;text-wrap:balance">Подари себе моменты радости</h2>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="#" style="display:flex;justify-content:space-between;align-items:center;background:#151515;color:#fff;padding:14px 18px;border-radius:999px;font-size:14px;font-weight:500" style-hover="background:#F52A82;color:#fff"><span>Купить на Wildberries</span><span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer data-screen-label="Footer" style="max-width:1280px;margin:16px auto 0;background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+  <div style="padding:clamp(28px,4vw,48px) clamp(16px,4vw,56px) 0;overflow:hidden;container-type:inline-size">
+    <div style="font-size:14.2cqw;line-height:0.86;letter-spacing:-0.05em;font-weight:800;color:#F52A82;white-space:nowrap;margin:0 0 -0.08em -0.04em">Эмоции first!</div>
+  </div>
+  <div style="padding:clamp(24px,3vw,40px) clamp(16px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(24px,3vw,40px);font-size:13px;line-height:1.5">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <img src="./iffecta/brand/logo-oneline-black.png" alt="IFFECTA" style="height:20px;width:auto;display:block;align-self:flex-start">
+      <p style="margin:0;max-width:240px">Make cosmetics fun again</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82;margin-bottom:4px">Соцсети</div>
+      <a href="#" style="font-weight:500">Instagram</a>
+      <a href="#" style="font-weight:500">TikTok</a>
+      <a href="#" style="font-weight:500">YouTube</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82;margin-bottom:4px">Где купить</div>
+      <a href="#" style="font-weight:500">Wildberries</a>
+      <a href="#buy" style="font-weight:500">Все пенки</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#F52A82;margin-bottom:4px">Документы</div>
+      <a href="./IFFECTA Политика конфиденциальности.dc.html" style="font-weight:500">Политика конфиденциальности</a>
+      <a href="./IFFECTA Пользовательское соглашение.dc.html" style="font-weight:500">Пользовательское соглашение</a>
+      <a href="./IFFECTA Согласие на обработку ПД.dc.html" style="font-weight:500">Согласие на обработку персональных данных</a>
+      <a href="./IFFECTA Оферта.dc.html" style="font-weight:500">Оферта</a>
+    </div>
+  </div>
+  <div style="padding:16px clamp(16px,4vw,56px) 20px;border-top:1px solid #F7C7DD;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:#555">
+    <span>© 2026 IFFECTA. Все права защищены.</span>
+    <a href="mailto:hello@iffecta.ru" style="color:#555">hello@iffecta.ru</a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showUgc&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Блоки&quot;},&quot;showLineup&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Блоки&quot;}}">
+class Component extends DCLogic {
+  lotusVideoRef = React.createRef();
+  heroVideoRef = React.createRef();
+  _setupHero() {
+    const v = this.heroVideoRef.current;
+    if (!v) return;
+    const mobile = window.matchMedia('(max-width:640px)').matches;
+    const src = mobile ? './photos/video/hero-mobile.mp4' : './photos/video/hero-desktop.mp4';
+    if (v.getAttribute('data-src') === src) return;
+    v.setAttribute('data-src', src);
+    v.style.opacity = '0';
+    v.muted = true; v.loop = true; v.playsInline = true;
+    v.onplaying = () => { v.style.opacity = '1'; };
+    v.onpause = v.onerror = v.onstalled = v.onwaiting = () => { v.style.opacity = '0'; };
+    v.src = src;
+    v.play().catch(() => {});
+  }
+  componentDidMount() {
+    this._setupHero();
+    this._heroResize = () => this._setupHero();
+    window.addEventListener('resize', this._heroResize);
+    this._heroMq = window.matchMedia('(max-width:640px)');
+    this._heroMq.addEventListener('change', this._heroResize);
+    const tryPlay = () => {
+      const v = this.lotusVideoRef.current;
+      if (!v) return;
+      v.muted = true; v.defaultMuted = true; v.volume = 0; v.loop = true; v.playsInline = true;
+      v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+      if (v.paused) v.play().catch(() => {});
+    };
+    const v0 = this.lotusVideoRef.current;
+    if (v0) { v0.addEventListener('volumechange', () => { if (!v0.muted || v0.volume > 0) { v0.muted = true; v0.volume = 0; } }); }
+    tryPlay();
+    this._lotusTimer = setInterval(tryPlay, 1500);
+  }
+  componentWillUnmount() { clearInterval(this._lotusTimer); window.removeEventListener('resize', this._heroResize); this._heroMq && this._heroMq.removeEventListener('change', this._heroResize); }
+  renderVals() {
+    return {
+      lotusVideoRef: this.lotusVideoRef,
+      heroVideoRef: this.heroVideoRef,
+      showUgc: this.props.showUgc ?? true,
+      showLineup: this.props.showLineup ?? true,
+      ugc: [
+        { id: 'ugc-1', src: './photos/web/0991.jpg', text: 'UGC' },
+        { id: 'ugc-2', src: './photos/web/0787.jpg', text: 'UGC' },
+        { id: 'ugc-3', src: './photos/web/1065.jpg', text: 'UGC' },
+        { id: 'ugc-4', src: './photos/web/0883.jpg', text: 'UGC' },
+      ],
+      lineup: [
+        { id: 'line-pink', name: 'Розовая', sku: 'IFF-01', actives: 'Розовый лотос · экзосомы центеллы', foam: 'Розовая пена', bg: '#C9EAF7', img: './assets/bottle-pink.png' },
+        { id: 'line-yellow', name: 'Жёлтая', sku: 'IFF-02', actives: 'Витамин С · экзосомы центеллы', foam: 'Жёлтая пена', bg: '#F7C7DD', img: './assets/bottle-yellow.png' },
+        { id: 'line-blue', name: 'Синяя', sku: 'IFF-03', actives: 'Морские минералы · кокосовое молоко', foam: 'Голубая пена', bg: '#D7C9EF', img: './assets/bottle-blue.png' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

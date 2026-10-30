@@ -1,0 +1,7 @@
+.env
+.env.deploy
+node_modules/
+out/
+.next/
+__pycache__/
+.claude/
