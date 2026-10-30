@@ -9,7 +9,9 @@ No build step, no framework: plain HTML + CSS + a few lines of JS. Purchases go 
 public/              ← site docroot, upload as-is (Beget: /iffecta/public_html)
   index.html         ← landing
   privacy/ terms/ consent/ oferta/   ← legal pages (generated, do not edit by hand)
-  css/site.css  js/site.js
+  css/site.css       ← layout and tokens (1:1 with the handoff)
+  css/motion.css     ← animation layer: hero intro, scroll reveal, hovers; off under prefers-reduced-motion
+  js/site.js         ← hero video switch, scroll reveal (IntersectionObserver), hero parallax
   assets/            ← brand logo, photos, ingredient images, bottles, hero/lotus video
 scripts/build_legal.py   ← rebuilds public/<slug>/index.html from docs/legal/*.md
 scripts/build_favicon.py ← rebuilds favicon.ico / favicon-32.png / apple-touch-icon.png / icon-*.png

@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/motion.css">
 </head>
 <body>
 <div class="page">
@@ -37,11 +38,13 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img class="cover hero__photo" src="/assets/photos/1028.jpg" alt="" fetchpriority="high">
-    <video class="cover hero__video" data-hero-video
-           data-src-desktop="/assets/video/hero-desktop.mp4"
-           data-src-mobile="/assets/video/hero-mobile.mp4"
-           muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <div class="hero__media" data-parallax>
+      <img class="cover hero__photo" src="/assets/photos/1028.jpg" alt="" fetchpriority="high">
+      <video class="cover hero__video" data-hero-video
+             data-src-desktop="/assets/video/hero-desktop.mp4"
+             data-src-mobile="/assets/video/hero-mobile.mp4"
+             muted loop playsinline preload="auto" aria-hidden="true"></video>
+    </div>
     <div class="hero__overlay">
       <div class="glass hero__glass">
         <div class="glass__dot"></div>
@@ -49,7 +52,7 @@
         <p>Цветная пена превращает обычное умывание в момент, который хочется попробовать, рассмотреть и снять.</p>
       </div>
       <div class="hero__bottom">
-        <h1 class="hero__title">Умывайся<br>в цвете.</h1>
+        <h1 class="hero__title"><span class="line"><span>Умывайся</span></span><span class="line"><span>в цвете.</span></span></h1>
         <div class="hero__cta">
           <a href="#buy" class="btn btn--pink">Купить</a>
         </div>

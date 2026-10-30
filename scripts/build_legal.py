@@ -256,6 +256,7 @@ def render(slug: str, h1: str, description: str, doc: dict) -> str:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/motion.css">
 </head>
 <body>
 <div class="page">
@@ -295,6 +296,7 @@ def render(slug: str, h1: str, description: str, doc: dict) -> str:
 {FOOTER}
 
 </div>
+<script src="/js/site.js"></script>
 </body>
 </html>
 """

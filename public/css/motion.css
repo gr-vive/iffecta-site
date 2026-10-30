@@ -1,0 +1,118 @@
+/* IFFECTA — motion layer. Loaded after site.css. Everything here is decorative:
+   without JS nothing is hidden, and prefers-reduced-motion switches it all off. */
+
+/* ---------- hero: parallax wrapper + intro on load ---------- */
+
+.hero__media {
+  position: absolute;
+  inset: -8% 0;
+  will-change: transform;
+}
+.hero__media .cover { height: 100%; }
+
+.hero__title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .06em;
+  margin-bottom: -.06em;
+}
+.hero__title .line > span {
+  display: block;
+  transform: translateY(110%);
+  animation: line-up .9s cubic-bezier(.2, .8, .2, 1) .2s forwards;
+}
+.hero__title .line:nth-child(2) > span { animation-delay: .32s; }
+.hero__glass {
+  opacity: 0;
+  animation: fade-left .8s cubic-bezier(.2, .8, .2, 1) .5s forwards;
+}
+.hero__cta .btn {
+  opacity: 0;
+  animation: pop .7s cubic-bezier(.2, .8, .2, 1) .45s forwards;
+}
+
+@keyframes line-up { to { transform: translateY(0); } }
+@keyframes fade-left { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* ---------- scroll reveal (classes are added by js/site.js) ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity .8s cubic-bezier(.2, .8, .2, 1) var(--d, 0s),
+    transform .9s cubic-bezier(.2, .8, .2, 1) var(--d, 0s);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal--right { transform: translateX(32px); }
+.reveal--scale { transform: translateY(0) scale(.96); }
+.reveal--big { transform: translateY(40%); }
+.reveal--line { transform: translateY(14px); }
+
+/* photos zoom out gently as they appear */
+.photo { contain: paint; }
+.photo.reveal img.cover {
+  transform: scale(1.06);
+  transition: transform 1.4s cubic-bezier(.2, .8, .2, 1) var(--d, 0s);
+}
+.photo.reveal.is-visible img.cover { transform: none; }
+
+/* ---------- hover / press ---------- */
+
+.btn, .buy__link {
+  transition:
+    color .2s ease,
+    background-color .2s ease,
+    transform .25s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .25s ease;
+}
+.btn:hover, .buy__link:hover { transform: translateY(-2px); }
+.btn--pink:hover { box-shadow: 0 14px 34px rgba(21, 21, 21, .25); }
+.btn:active, .buy__link:active { transform: translateY(0) scale(.98); }
+
+.product { transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+.product:hover { transform: translateY(-4px); }
+.product__buy span { transform: scale(.92); transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+.product:hover .product__buy span,
+.product:focus-within .product__buy span { transform: none; }
+
+.ingredient { transition: transform .35s cubic-bezier(.2, .8, .2, 1); }
+.ingredient:hover { transform: translateY(-4px); }
+.ingredient__img img { transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.ingredient:hover .ingredient__img img { transform: scale(1.06); }
+
+.ugc__grid .photo img { transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.ugc__grid .photo:hover img { transform: scale(1.05); }
+
+/* accordion: the plus turns into a cross */
+.inci summary span:last-child { display: inline-block; transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+.inci[open] summary span:last-child { transform: rotate(45deg); }
+
+/* pink dot on the glass cards breathes */
+.glass__dot { animation: breathe 3.2s ease-in-out infinite; }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+
+/* nav: pink underline grows from the left */
+.nav a { position: relative; padding-bottom: 2px; }
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1.5px;
+  background: var(--pink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+}
+.nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title .line > span, .hero__glass, .hero__cta .btn { animation: none; opacity: 1; transform: none; }
+  .reveal, .photo.reveal img.cover { opacity: 1; transform: none; transition: none; }
+  .glass__dot { animation: none; }
+  .hero__media { transform: none !important; }
+  html { scroll-behavior: auto; }
+}
