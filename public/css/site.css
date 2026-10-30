@@ -518,13 +518,11 @@ p { margin: 0; }
   font-weight: 700;
   box-shadow: 0 10px 30px rgba(245, 42, 130, .35);
 }
-/* 2. touch devices: the «Купить» overlay slides in when the card reaches the middle
-   of the screen (class set by js/site.js) instead of staying on permanently */
+/* touch devices: no «Купить» overlay, the whole card is the link to Wildberries */
+.product__link { display: none; position: absolute; inset: 0; z-index: 1; }
 @media (hover: none) {
-  .product__buy { opacity: 0; }
-  .product.is-active .product__buy { opacity: 1; }
-  .product.is-active .product__buy span { transform: none; }
-  .product.is-active .product__img img { transform: scale(1.04); }
+  .product__buy { display: none; }
+  .product__link { display: block; }
 }
 .product__meta {
   padding: 20px 22px 24px;

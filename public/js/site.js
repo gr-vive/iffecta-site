@@ -35,15 +35,6 @@
     else mq.addListener(setup);
   }
 
-  // ---- Lineup on touch devices: «Купить» appears while the card sits in the middle of the screen ----
-  if (window.matchMedia('(hover: none)').matches && 'IntersectionObserver' in window) {
-    var cards = document.querySelectorAll('.product');
-    var activeIo = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { e.target.classList.toggle('is-active', e.isIntersecting); });
-    }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
-    for (var c = 0; c < cards.length; c++) activeIo.observe(cards[c]);
-  }
-
   if (reduce) return;
 
   // ---- Scroll reveal ----
