@@ -95,7 +95,8 @@
   // ---- Hero parallax: media drifts at 15% of scroll while the hero is on screen ----
   var media = document.querySelector('[data-parallax]');
   var hero = media && media.parentElement;
-  if (media && hero) {
+  var desktop = !window.matchMedia('(max-width:640px)').matches;
+  if (media && hero && desktop) {
     var ticking = false;
     var update = function () {
       ticking = false;

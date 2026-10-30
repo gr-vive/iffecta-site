@@ -9,6 +9,10 @@
   will-change: transform;
 }
 .hero__media .cover { height: 100%; }
+/* mobile: no parallax, the media sits exactly in the hero box */
+@media (max-width: 640px) {
+  .hero__media { inset: 0; transform: none !important; will-change: auto; }
+}
 
 .hero__title .line {
   display: block;
