@@ -40,7 +40,8 @@ jobs:
                 -e "s#\": \"/([^/\"])#\": \"${BASE}/\\1#g" \
                 -e "s#\": \"/\"#\": \"${BASE}/\"#g"
           # social previews of the preview site: point og/twitter images at Pages, not iffecta.ru
-          find dist -name '*.html' -print0 | xargs -0 sed -i -E             -e "s#(property=\"og:image\"|name=\"twitter:image\") content=\"https://iffecta\.ru/#\1 content=\"https://gr-vive.github.io${BASE}/#g"
+          find dist -name '*.html' -print0 | xargs -0 sed -i -E 
+            -e "s#(property=\"og:image\"|name=\"twitter:image\") content=\"https://iffecta\.ru/#\1 content=\"https://gr-vive.github.io${BASE}/#g"
           # the bare "/" rule must run AFTER the general one, otherwise the general rule
           # re-prefixes the already rewritten value (/iffecta-site/iffecta-site/)
           if grep -rq "${BASE}${BASE}" dist; then echo "double prefix found"; exit 1; fi
