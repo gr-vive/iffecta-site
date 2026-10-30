@@ -626,7 +626,8 @@ p { margin: 0; }
 }
 .footer__col { display: flex; flex-direction: column; gap: 8px; }
 .footer__col--brand { gap: 10px; }
-.footer__col--brand img { height: 20px; width: auto; align-self: flex-start; }
+.footer__logo { align-self: flex-start; display: block; }
+.footer__col--brand img { height: 20px; width: auto; }
 .footer__col--brand p { max-width: 240px; }
 .footer__col .label { margin-bottom: 4px; }
 .footer__col a { font-weight: 500; }
