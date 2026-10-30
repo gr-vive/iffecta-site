@@ -12,6 +12,8 @@ public/              ← site docroot, upload as-is (Beget: /iffecta/public_html
   css/site.css  js/site.js
   assets/            ← brand logo, photos, ingredient images, bottles, hero/lotus video
 scripts/build_legal.py   ← rebuilds public/<slug>/index.html from docs/legal/*.md
+scripts/build_favicon.py ← rebuilds favicon.ico / favicon-32.png / apple-touch-icon.png / icon-*.png
+                           («IF» from the wordmark on a pink rounded square)
 docs/legal/*.md      ← legal texts (source of truth); placeholders marked [УКАЗАТЬ: ...]
 docs/LINKS.md        ← official social + Wildberries links used on the site
 docs/DEPLOY.md       ← hosting / domain / FTP plan
@@ -46,4 +48,3 @@ design/landing-prototype.dc.html   ← original prototype, reference only
 - `assets/video/hero-mobile.mp4` is ~22 MB (uncompressed); hero-desktop is already compressed.
 - Photos are served as JPEG; WebP/AVIF + `srcset` still to do.
 - Legal pages contain `[УКАЗАТЬ: ...]` placeholders (highlighted in pink) — fill in before launch.
-- No favicon yet.
