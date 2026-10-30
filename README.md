@@ -13,12 +13,16 @@ public/              ← site docroot, upload as-is (Beget: /iffecta/public_html
   css/motion.css     ← animation layer: hero intro, scroll reveal, hovers; off under prefers-reduced-motion
   js/site.js         ← hero video switch, scroll reveal (IntersectionObserver), hero parallax
   assets/            ← brand logo, photos, ingredient images, bottles, hero/lotus video
+  robots.txt  sitemap.xml  llms.txt  og-image.jpg  site.webmanifest  404.html  .htaccess
+                     ← SEO/GEO layer, see docs/SEO.md
 scripts/build_legal.py   ← rebuilds public/<slug>/index.html from docs/legal/*.md
+scripts/build_sitemap.py ← rebuilds public/sitemap.xml (lastmod from git)
 scripts/build_favicon.py ← rebuilds favicon.ico / favicon-32.png / apple-touch-icon.png / icon-*.png
                            («IF» from the wordmark on a pink rounded square)
 docs/legal/*.md      ← legal texts (source of truth); placeholders marked [УКАЗАТЬ: ...]
 docs/LINKS.md        ← official social + Wildberries links used on the site
 docs/DEPLOY.md       ← hosting / domain / FTP plan
+docs/SEO.md          ← SEO/GEO checklist: what is done, what waits for Webmaster/GSC accounts
 design/HANDOFF.md    ← design handoff spec (tokens, sections, interactions)
 design/landing-prototype.dc.html   ← original prototype, reference only
 ```

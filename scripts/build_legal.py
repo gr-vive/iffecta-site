@@ -8,6 +8,7 @@ design/HANDOFF.md section 11 (LegalPage). Re-run after editing any text:
 from __future__ import annotations
 
 import html
+import json
 import re
 from pathlib import Path
 
@@ -21,13 +22,17 @@ SITE = "https://iffecta.ru"
 DOCS = [
     # slug, md file, H1 on the page, short label for nav, meta description
     ("privacy", "privacy.md", "Политика конфиденциальности", "Политика конфиденциальности",
-     "Политика в отношении обработки персональных данных пользователей сайта iffecta.ru."),
+     "Политика обработки персональных данных сайта iffecta.ru: какие данные собираются, "
+     "цели, сроки хранения, cookie, права пользователя и контакты оператора."),
     ("terms", "terms.md", "Пользовательское соглашение", "Пользовательское соглашение",
-     "Пользовательское соглашение сайта iffecta.ru."),
+     "Пользовательское соглашение сайта iffecta.ru: правила использования, интеллектуальная "
+     "собственность, ссылки на маркетплейсы, ответственность сторон."),
     ("consent", "consent.md", "Согласие на обработку персональных данных", "Согласие на обработку ПД",
-     "Согласие на обработку персональных данных пользователей сайта iffecta.ru."),
+     "Согласие на обработку персональных данных пользователей iffecta.ru по 152-ФЗ: перечень "
+     "данных, цели, передача третьим лицам, срок действия и отзыв."),
     ("oferta", "oferta.md", "Публичная оферта", "Оферта",
-     "Публичная оферта о продаже товаров дистанционным способом. IFFECTA."),
+     "Публичная оферта IFFECTA о продаже косметики дистанционным способом: оформление заказа, "
+     "оплата, доставка, возврат и обмен товара, реквизиты продавца."),
 ]
 
 REQUISITES = {
@@ -176,6 +181,38 @@ def render_requisites(blocks: list) -> str:
     return "        <div class=\"requisites\">\n" + "\n".join(rows) + "\n        </div>"
 
 
+def json_ld(slug: str, h1: str, description: str) -> str:
+    """WebPage + BreadcrumbList for a legal page (ISO date from REVISION_DATE dd.mm.yyyy)."""
+    d, m, y = REVISION_DATE.split(".")
+    iso = f"{y}-{m}-{d}"
+    data = {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": f"{SITE}/{slug}/#webpage",
+                "url": f"{SITE}/{slug}/",
+                "name": f"{h1} — IFFECTA",
+                "description": description,
+                "inLanguage": "ru-RU",
+                "isPartOf": {"@id": f"{SITE}/#website"},
+                "about": {"@id": f"{SITE}/#organization"},
+                "datePublished": iso,
+                "dateModified": iso,
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": f"{SITE}/{slug}/#breadcrumb",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Главная", "item": f"{SITE}/"},
+                    {"@type": "ListItem", "position": 2, "name": h1, "item": f"{SITE}/{slug}/"},
+                ],
+            },
+        ],
+    }
+    return json.dumps(data, ensure_ascii=False, indent=2)
+
+
 def nav_html(active: str, cls: str) -> str:
     items = []
     for slug, _, _, label, _ in DOCS:
@@ -247,11 +284,27 @@ def render(slug: str, h1: str, description: str, doc: dict) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(h1)} — IFFECTA</title>
 <meta name="description" content="{html.escape(description, quote=True)}">
-<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{SITE}/{slug}/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IFFECTA">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="{SITE}/{slug}/">
+<meta property="og:title" content="{html.escape(h1, quote=True)} — IFFECTA">
+<meta property="og:description" content="{html.escape(description, quote=True)}">
+<meta property="og:image" content="{SITE}/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{html.escape(h1, quote=True)} — IFFECTA">
+<meta name="twitter:description" content="{html.escape(description, quote=True)}">
+<meta name="twitter:image" content="{SITE}/og-image.jpg">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#F7C7DD">
+<script type="application/ld+json">{json_ld(slug, h1, description)}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
