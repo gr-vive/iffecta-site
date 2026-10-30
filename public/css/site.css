@@ -115,7 +115,7 @@ p { margin: 0; }
   border-radius: 50%;
   background: var(--pink);
 }
-.glass .label { margin-bottom: 8px; }
+.glass .label { margin-bottom: 8px; padding-right: 36px; }
 .glass p { font-size: 13px; line-height: 1.45; }
 
 .cover {
@@ -517,7 +517,14 @@ p { margin: 0; }
   font-weight: 700;
   box-shadow: 0 10px 30px rgba(245, 42, 130, .35);
 }
-@media (hover: none) { .product__buy { opacity: 1; } }
+/* 2. touch devices: the «Купить» overlay slides in when the card reaches the middle
+   of the screen (class set by js/site.js) instead of staying on permanently */
+@media (hover: none) {
+  .product__buy { opacity: 0; }
+  .product.is-active .product__buy { opacity: 1; }
+  .product.is-active .product__buy span { transform: none; }
+  .product.is-active .product__img img { transform: scale(1.04); }
+}
 .product__meta {
   padding: 20px 22px 24px;
   display: flex;
@@ -759,6 +766,11 @@ p { margin: 0; }
 }
 
 @media (max-width: 640px) {
+  /* 4. long words like «конфиденциальности» must fit the phone width */
+  .doc-head__title { font-size: clamp(26px, 8vw, 34px); max-width: none; overflow-wrap: anywhere; hyphens: auto; }
+}
+
+@media (max-width: 640px) {
   .nav, .hero__glass { display: none; }
   .header { padding: 4px 2px 14px; }
   .hero { height: auto; min-height: 0; aspect-ratio: 3 / 4; }
@@ -776,8 +788,19 @@ p { margin: 0; }
   .about__intro { gap: 16px; }
   .benefits__photo { aspect-ratio: 3 / 4; }
   .ugc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* 1. buy card: full width under the photo, same edges as the blocks around */
   .buy { min-height: 0; }
   .buy__img { position: relative; height: clamp(300px, 90vw, 440px); }
-  .buy__overlay { position: relative; padding: 12px; }
-  .buy__card { width: 100%; }
+  .buy__overlay { position: relative; padding: 0; }
+  .buy__card {
+    width: 100%;
+    border-radius: 0;
+    border-width: 1px 0 0;
+    padding: 24px var(--pad-x) 28px;
+  }
+  .buy__card .glass__dot { right: var(--pad-x); }
+  /* 3. «Вкусный аромат» card: smaller dot, full width of the photo */
+  .benefits__glass { width: calc(100% - 2 * clamp(12px, 2vw, 24px)); }
+  .benefits__glass .glass__dot { width: 20px; height: 20px; top: 16px; right: 16px; }
+  .benefits__glass .label { padding-right: 30px; }
 }
