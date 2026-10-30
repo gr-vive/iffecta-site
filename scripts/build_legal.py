@@ -18,6 +18,7 @@ OUT = ROOT / "public"
 
 REVISION_DATE = "30.10.2026"  # shown in the two pills under the H1
 SITE = "https://iffecta.ru"
+WB_PINK = "https://www.wildberries.ru/catalog/863391328/detail.aspx"  # header «Купить»
 
 DOCS = [
     # slug, md file, H1 on the page, short label for nav, meta description
@@ -317,7 +318,7 @@ def render(slug: str, h1: str, description: str, doc: dict) -> str:
 <header class="header">
   <a href="/" class="header__logo"><img src="/assets/brand/logo-oneline-black.png" alt="IFFECTA"></a>
 {nav_html(slug, "nav nav--docs")}
-  <a href="/#buy" class="btn btn--black">Купить</a>
+  <a href="{WB_PINK}" class="btn btn--black" target="_blank" rel="noopener">Купить</a>
 </header>
 
 <main class="card">

@@ -35,10 +35,13 @@ jobs:
           touch dist/.nojekyll
           find dist \( -name '*.html' -o -name '*.webmanifest' -o -name '*.css' -o -name '*.js' \) -print0 \
             | xargs -0 sed -i -E \
-                -e "s#=\"/\"#=\"${BASE}/\"#g" \
                 -e "s#=\"/([^/\"])#=\"${BASE}/\\1#g" \
-                -e "s#\": \"/\"#\": \"${BASE}/\"#g" \
-                -e "s#\": \"/([^/\"])#\": \"${BASE}/\\1#g"
+                -e "s#=\"/\"#=\"${BASE}/\"#g" \
+                -e "s#\": \"/([^/\"])#\": \"${BASE}/\\1#g" \
+                -e "s#\": \"/\"#\": \"${BASE}/\"#g"
+          # the bare "/" rule must run AFTER the general one, otherwise the general rule
+          # re-prefixes the already rewritten value (/iffecta-site/iffecta-site/)
+          if grep -rq "${BASE}${BASE}" dist; then echo "double prefix found"; exit 1; fi
           echo "--- sanity check"
           grep -o 'href="[^"]*site.css"' dist/index.html
           grep -o 'data-src-desktop="[^"]*"' dist/index.html
