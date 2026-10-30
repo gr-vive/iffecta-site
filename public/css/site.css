@@ -194,7 +194,7 @@ p { margin: 0; }
 }
 .hero__glass {
   pointer-events: auto;
-  align-self: flex-start;
+  align-self: flex-end;
   width: min(300px, 100%);
   box-shadow: 0 10px 40px rgba(21, 21, 21, .08);
 }

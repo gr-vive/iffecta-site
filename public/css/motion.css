@@ -24,15 +24,19 @@
 .hero__title .line:nth-child(2) > span { animation-delay: .32s; }
 .hero__glass {
   opacity: 0;
-  animation: fade-left .8s cubic-bezier(.2, .8, .2, 1) .5s forwards;
+  animation: fade-right .8s cubic-bezier(.2, .8, .2, 1) .5s forwards;
+  transition: opacity .6s ease;
 }
+/* once the hero video is playing the card goes away (class set by js/site.js);
+   !important wins over the load animation's fill value */
+.hero--video .hero__glass { opacity: 0 !important; pointer-events: none; }
 .hero__cta .btn {
   opacity: 0;
   animation: pop .7s cubic-bezier(.2, .8, .2, 1) .45s forwards;
 }
 
 @keyframes line-up { to { transform: translateY(0); } }
-@keyframes fade-left { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+@keyframes fade-right { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: none; } }
 @keyframes pop { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
 
 /* ---------- scroll reveal (classes are added by js/site.js) ---------- */

@@ -19,9 +19,16 @@
       var p = video.play();
       if (p && p.catch) p.catch(function () {});
     };
-    video.addEventListener('playing', function () { video.classList.add('is-playing'); });
+    var heroEl = video.closest('.hero');
+    video.addEventListener('playing', function () {
+      video.classList.add('is-playing');
+      if (heroEl) heroEl.classList.add('hero--video');
+    });
     ['pause', 'error', 'stalled', 'waiting'].forEach(function (ev) {
-      video.addEventListener(ev, function () { video.classList.remove('is-playing'); });
+      video.addEventListener(ev, function () {
+        video.classList.remove('is-playing');
+        if (heroEl) heroEl.classList.remove('hero--video');
+      });
     });
     setup();
     if (mq.addEventListener) mq.addEventListener('change', setup);
