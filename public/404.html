@@ -8,32 +8,128 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#F7C7DD">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/site.css">
 <style>
-  .nf { padding: var(--pad-y) var(--pad-x); display: flex; flex-direction: column; gap: 18px; min-height: 60vh; justify-content: center; }
-  .nf h1 { margin: 0; font-size: clamp(40px, 6.5vw, 96px); line-height: .95; letter-spacing: -.04em; font-weight: 800; color: var(--pink); }
-  .nf p { font-size: clamp(16px, 1.4vw, 19px); line-height: 1.45; max-width: 460px; }
-  .nf .btn { align-self: flex-start; }
+  /* 404 page — design/HANDOFF-404.md. Reuses header, buttons and glass card from site.css. */
+  .page--404 { display: flex; flex-direction: column; }
+  .page--404 .header { width: 100%; }
+  .nf {
+    width: 100%;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    align-items: stretch;
+  }
+  .nf__text {
+    padding: clamp(32px, 5vw, 72px) clamp(20px, 4vw, 56px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .nf__copy { display: flex; flex-direction: column; gap: 18px; }
+  .nf__code {
+    font-size: clamp(96px, 16vw, 240px);
+    line-height: .85;
+    letter-spacing: -.06em;
+    font-weight: 800;
+    color: var(--pink);
+  }
+  .nf__title {
+    margin: 0;
+    font-size: clamp(28px, 3.2vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    font-weight: 800;
+    text-wrap: balance;
+    max-width: 16ch;
+  }
+  .nf__copy p {
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.5;
+    max-width: 420px;
+    text-wrap: pretty;
+  }
+  .nf__actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .nf__actions .btn--outline { padding: 14px 22px; }
+  .nf__photo {
+    position: relative;
+    min-height: clamp(420px, 60vh, 720px);
+    overflow: hidden;
+  }
+  .nf__photo img { object-position: 50% 20%; }
+  .nf__glass {
+    position: absolute;
+    left: clamp(16px, 3vw, 32px);
+    bottom: clamp(16px, 3vw, 32px);
+    width: min(280px, calc(100% - 32px));
+  }
+  .nf__glass p { max-width: 220px; }
+  .footer--short {
+    width: 100%;
+    padding: 16px var(--pad-x) 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--grey);
+  }
+  .footer--short a { color: var(--grey); }
+  .footer--short a:hover { color: var(--pink); }
+  @media (max-width: 640px) {
+    .nf__actions .btn { width: 100%; }
+    .nf__photo { aspect-ratio: 4 / 5; min-height: 0; }
+  }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="page page--404">
+
 <header class="header">
   <a href="/" class="header__logo"><img src="/assets/brand/logo-oneline-black.png" alt="IFFECTA"></a>
+  <nav class="nav">
+    <a href="/#about">О пенке</a>
+    <a href="/#actives">Состав</a>
+    <a href="/#how">Применение</a>
+    <a href="/#lineup">Линейка</a>
+  </nav>
   <a href="/#buy" class="btn btn--black">Купить</a>
 </header>
-<main class="card">
-  <section class="nf">
-    <div class="label">Ошибка 404</div>
-    <h1>Такой страницы нет.</h1>
-    <p>Зато есть пенка, с которой хочется умываться. Вернитесь на главную и выберите своё настроение.</p>
-    <a href="/" class="btn btn--pink">На главную</a>
-  </section>
+
+<main class="card nf">
+  <div class="nf__text">
+    <div class="nf__copy">
+      <div class="label">Ошибка 404</div>
+      <div class="nf__code">404</div>
+      <h1 class="nf__title">Эта страница смылась.</h1>
+      <p>Такого адреса нет или он изменился. Но пенка на месте — возвращайся на главную.</p>
+    </div>
+    <div class="nf__actions">
+      <a href="/" class="btn btn--pink">На главную</a>
+      <a href="/#buy" class="btn btn--outline">Купить пенку</a>
+    </div>
+  </div>
+  <div class="nf__photo">
+    <img class="cover" src="/assets/photos/0929.jpg" alt="Две девушки с цветной пеной IFFECTA на щеках">
+    <div class="glass nf__glass">
+      <div class="glass__dot"></div>
+      <div class="label">Эмоции first!</div>
+      <p>Даже на 404 можно улыбнуться.</p>
+    </div>
+  </div>
 </main>
+
+<footer class="footer footer--short">
+  <span>© 2026 IFFECTA. Все права защищены.</span>
+  <a href="mailto:hello@iffecta.ru">hello@iffecta.ru</a>
+</footer>
+
 </div>
 </body>
 </html>
